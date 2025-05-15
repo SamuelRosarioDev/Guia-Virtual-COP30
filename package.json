@@ -1,12 +1,27 @@
 {
   "name": "cop30-guia-virtual",
-  "module": "index.ts",
+  "version": "0.0.1",
+  "description": "Guia virtual para a COP30",
+  "author": "Samuel Rosário",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun --watch src/main.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.1",
+    "express": "^5.1.0",
+    "http-status-codes": "^2.3.0",
+    "jwt": "^0.2.0",
+    "prisma": "^6.8.0",
+    "tsc": "^2.0.4",
+    "tsx": "^4.19.4",
+    "zod": "^3.24.4"
   }
 }
