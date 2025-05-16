@@ -8,7 +8,7 @@ type TraderProps = {
 	userId: string;
 };
 
-export class Trader {
+export class TraderEntity {
 	public id?: string;
 	public storeName: string;
 	public storeType: string;

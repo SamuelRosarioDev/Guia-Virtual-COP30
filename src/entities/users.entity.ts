@@ -1,11 +1,6 @@
-import type { Hotelier } from "./hotelier.entity";
-import type { Trader } from "./trader.entity";
-
-enum UserType {
-	HOTELIER = "HOTELIER",
-	TRADER = "TRADER",
-	VISITOR = "VISITOR",
-}
+import type { HotelierEntity } from "./hotelier.entity";
+import type { TraderEntity } from "./trader.entity";
+import { UserType } from "../enums/users.enum";
 
 type UserProps = {
 	_id?: string;
@@ -16,11 +11,11 @@ type UserProps = {
 	country: string;
 	typeUser: UserType;
 
-	hotelierData?: Hotelier;
-	traderData?: Trader;
+	hotelierData?: HotelierEntity;
+	traderData?: TraderEntity;
 };
 
-export class User {
+export class UserEntity {
 	public _id?: string;
 	public name: string;
 	public email: string;
@@ -29,8 +24,8 @@ export class User {
 	public country: string;
 	public typeUser: UserType;
 
-	public hotelierData?: Hotelier;
-	public traderData?: Trader;
+	public hotelierData?: HotelierEntity;
+	public traderData?: TraderEntity;
 
 	constructor({
 		_id,
@@ -54,9 +49,7 @@ export class User {
 		this.traderData = traderData;
 	}
 	isHotelier(): boolean {
-		return (
-			this.typeUser === UserType.HOTELIER && this.hotelierData !== undefined
-		);
+		return this.typeUser === UserType.HOTELIER && this.hotelierData !== undefined;
 	}
 
 	isTrader(): boolean {

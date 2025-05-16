@@ -9,7 +9,7 @@ type HotelierProps = {
 	userId: string;
 };
 
-export class Hotelier {
+export class HotelierEntity {
 	public id?: string;
 	public hotelName: string;
 	public totalQuantity: number;

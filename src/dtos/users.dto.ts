@@ -1,20 +1,21 @@
 import { z } from "zod";
+import { UserType } from "../enums/users.enum";
 
 const regexCPF = /^(?:\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11})$/;
 const regexCNPJ = /^(?:\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}|\d{14})$/;
 
 // USERS / VISITORS
 export const createUserSchema = {
-	name: z.string().min(1, "Name is required"),
-	email: z.string().email("Invalid email").min(1, "Email is required"),
-	password: z.string().min(6, "Password must be at least 6 characters long"),
+	name: z.string().min(1, "Nome é obrigatório"),
+	email: z.string().email("Email invalido").min(1, "Email é obrigatório"),
+	password: z.string().min(6, "Password deve ter no mínimo 6 caracteres"),
 	phone: z.string(),
 	country: z.string(),
-	typeUser: z.enum(["HOTELEIRO", "COMERCIANTE", "VISITANTE"]),
+	typeUser: z.nativeEnum(UserType),
 };
 
 const createUserObject = z.object(createUserSchema);
-export type CreateUser = z.infer<typeof createUserObject>;
+export type CreateUsersDTO = z.infer<typeof createUserObject>;
 
 // TRADER
 export const createTraderSchema = {

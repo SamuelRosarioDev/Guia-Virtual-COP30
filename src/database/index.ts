@@ -1,17 +1,18 @@
-// test{Connection.ts
 import { PrismaClient } from "@prisma/client";
+import { AppError } from "../errors/app.error";
+import { StatusCodes } from "http-status-codes";
 
 const prisma = new PrismaClient();
 
-async function main() {
+export async function Connection() {
 	try {
 		await prisma.$connect();
 		console.log("✅ Conectado ao SQL Server com sucesso!");
 	} catch (error) {
-		console.error("❌ Erro ao conectar com o banco de dados:", error);
+		throw new AppError(`❌ Error: ${error}`, StatusCodes.INTERNAL_SERVER_ERROR);
 	} finally {
 		await prisma.$disconnect();
 	}
 }
 
-main();
+Connection();
