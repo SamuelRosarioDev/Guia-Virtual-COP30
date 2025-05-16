@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  idUser    String   @id @default(uuid()) @map("id_user")
+  name      String
+  email     String   @unique
+  password  String
+  phone     String
+  country   String
+  typeUser  String // "HOTELEIRO", "COMERCIANTE", "VISITANTE"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  hotelier Hotelier? @relation
+  trader   Trader?   @relation
+
+  @@map("users")
+}
+
+model Hotelier {
+  idHotelier       String  @id @default(uuid()) @map("id_hotelier")
+  hotelName        String  @map("hotel_name")
+  totalQuantity    Int     @map("total_quantity")
+  quantityOccupied Int     @map("quantity_occupied")
+  cnpj             String  @unique
+  link             String?
+  address          String
+
+  user   User   @relation(fields: [userId], references: [idUser])
+  userId String @unique
+
+  @@map("hoteliers")
+}
+
+model Trader {
+  idTrader  String  @id @default(uuid()) @map("id_trader")
+  storeName String
+  storeType String // Exemplo: "PADARIA", "LANCHONETE", etc.
+  cpf       String  @unique
+  cnpj      String? @unique
+  address   String
+
+  user   User   @relation(fields: [userId], references: [idUser])
+  userId String @unique
+
+  @@map("traders")
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  nameEvent   String   @map("name_event")
+  description String
+  typeEvent   String // "CULTURAL", "ESPORTE", "GASTRONOMIA", "OUTROS"
+  address     String
+  startDate   DateTime @map("start_date")
+  endDate     DateTime @map("end_date")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("events")
+}
+
+model TouristAttraction {
+  id                     String  @id @default(uuid())
+  nameTouristAttractions String @map("name_tourist_attractions")
+  typeTouristSpot        String  @map("type_tourist_spot") // "PRACA", "MUSEU", "CINEMA", "PARQUE", "OUTRO"
+  address                String
+  description            String?
+
+  @@map("tourist_attractions")
+}
+
+model Bank {
+  id       String @id @default(uuid())
+  nameBank String // "BANCO_DO_BRASIL", "SANTANDER", "OUTROS"
+  cnpj     String @unique
+  address  String
+
+  @@map("banks")
+}
