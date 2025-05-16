@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "windows"]
 }
 
 datasource db {
@@ -70,7 +70,7 @@ model Event {
 
 model TouristAttraction {
   id                     String  @id @default(uuid())
-  nameTouristAttractions String @map("name_tourist_attractions")
+  nameTouristAttractions String  @map("name_tourist_attractions")
   typeTouristSpot        String  @map("type_tourist_spot") // "PRACA", "MUSEU", "CINEMA", "PARQUE", "OUTRO"
   address                String
   description            String?
