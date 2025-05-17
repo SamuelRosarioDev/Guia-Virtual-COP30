@@ -1,14 +1,14 @@
-import type { UsersService } from "../../services/users.service";
-import { createUser } from "./create.users.controller";
-import { getUsers } from "./get.users.controller";
-import { getUserById } from "./getById.users.controller";
-import { updateUser } from "./update.users.controller";
-import { deleteUser } from "./delete.users.controller";
+import type { UsersService } from "../../services/users";
+import { create } from "./users.create.controller";
+import { get } from "./users.get.controller";
+import { getById } from "./users.getById.controller";
+import { update } from "./users.update.controller";
+import { deleter } from "./users.delete.controller";
 
 export const UsersController = (usersService: UsersService) => ({
-  create: createUser(usersService),
-  get: getUsers(usersService),
-  getById: getUserById(usersService),
-  update: updateUser(usersService),
-  delete: deleteUser(usersService),
+  createUserController: create(usersService),
+  getUsersController: get(usersService),
+  getUserByIdController: getById(usersService),
+  updateUserController: update(usersService),
+  deleteUserController: deleter(usersService),
 });

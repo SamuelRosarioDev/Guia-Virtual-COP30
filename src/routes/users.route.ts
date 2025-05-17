@@ -10,8 +10,8 @@ export const usersRoutes = Router();
 
 const usersController = UsersController(UsersFactory.getServiceInstance());
 
-usersRoutes.get("/", usersController.get as RequestHandler);
-usersRoutes.post("/", validador({ schema: createUserSchema, type: ParamsType.BODY, }), usersController.create as RequestHandler);
-usersRoutes.get("/:idUser", validador({ schema: idUserSchema , type: ParamsType.PARAMS, }), usersController.getById as RequestHandler);
-usersRoutes.put("/:idUser", validador({ schema: idUserSchema, type: ParamsType.PARAMS, }), usersController.update as RequestHandler);
-usersRoutes.delete("/:idUser", validador({ schema: idUserSchema, type: ParamsType.PARAMS, }), usersController.delete as RequestHandler);
+usersRoutes.get("/", usersController.getUsersController as RequestHandler);
+usersRoutes.post("/", validador({ schema: createUserSchema, type: ParamsType.BODY, }), usersController.createUserController as RequestHandler);
+usersRoutes.get("/:idUser", validador({ schema: idUserSchema , type: ParamsType.PARAMS, }), usersController.getUserByIdController as RequestHandler);
+usersRoutes.put("/:idUser", validador({ schema: idUserSchema, type: ParamsType.PARAMS, }), usersController.updateUserController as RequestHandler);
+usersRoutes.delete("/:idUser", validador({ schema: idUserSchema, type: ParamsType.PARAMS, }), usersController.deleteUserController as RequestHandler);

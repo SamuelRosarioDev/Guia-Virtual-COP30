@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { UsersRepository } from "../database/repositories/users.repository";
-import { UsersService } from "../services/users.service";
+import { createUsersRepository } from "../database/repositories/users";
+import { UsersService } from "../services/users";
 
 const prisma = new PrismaClient();
 
@@ -12,8 +12,8 @@ class UsersFactoryInternal {
 			return this.usersServiceInstance;
 		}
 
-		const repository = new UsersRepository(prisma.user);
-		const service = new UsersService(repository);
+		const repository = createUsersRepository(prisma.user);
+		const service = UsersService(repository);
 		this.usersServiceInstance = service;
 
 		return service;
