@@ -17,7 +17,7 @@ export class UsersService {
         return createdUser;
     }
 
-    async getAllUsers() {
+    async getUsers() {
         const users = await this.usersRepository.index();
         return users;
     }
