@@ -1,17 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { type ZodRawShape, z } from "zod";
+import { z } from "zod";
 import { AppError } from "../errors/app.error";
-
-export enum ParamsType {
-	QUERY = "query",
-	BODY = "body",
-}
-
-type ValidadeParams = {
-	schema: ZodRawShape;
-	type: ParamsType;
-};
+import type { ValidadeParams } from "../types/validadeparams.type";
 
 export function validador(params: ValidadeParams) {
 	return (req: Request, res: Response, next: NextFunction) => {

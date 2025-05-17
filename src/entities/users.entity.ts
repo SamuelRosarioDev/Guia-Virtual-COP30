@@ -1,19 +1,7 @@
 import type { HotelierEntity } from "./hotelier.entity";
 import type { TraderEntity } from "./trader.entity";
 import { UserType } from "../enums/users.enum";
-
-type UserProps = {
-	_id?: string;
-	name: string;
-	email: string;
-	password: string;
-	phone: string;
-	country: string;
-	typeUser: UserType;
-
-	hotelierData?: HotelierEntity;
-	traderData?: TraderEntity;
-};
+import type { UserProps } from "../types/userprops.type";
 
 export class UserEntity {
 	public _id?: string;
@@ -27,17 +15,7 @@ export class UserEntity {
 	public hotelierData?: HotelierEntity;
 	public traderData?: TraderEntity;
 
-	constructor({
-		_id,
-		name,
-		email,
-		password,
-		phone,
-		country,
-		typeUser,
-		hotelierData,
-		traderData,
-	}: UserProps) {
+	constructor({ _id, name, email, password, phone, country, typeUser, hotelierData, traderData, }: UserProps) {
 		this._id = _id;
 		this.name = name;
 		this.email = email;

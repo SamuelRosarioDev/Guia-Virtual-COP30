@@ -13,35 +13,34 @@ export const createUserSchema = {
 	country: z.string(),
 	typeUser: z.nativeEnum(UserType),
 };
-
 const createUserObject = z.object(createUserSchema);
 export type CreateUsersDTO = z.infer<typeof createUserObject>;
+
+export const idUserSchema = ({
+  idUser: z.string().uuid("ID do usuário inválido"),
+});
 
 // TRADER
 export const createTraderSchema = {
 	storeName: z.string().min(1, "Nome da loja é obrigatório"),
 	storeType: z.string().min(1, "Tipo de loja é obrigatório"),
-	cpf: z.string().regex(regexCPF, "CPF inválido"),
+	cpf: z.string().regex(regexCPF, "CPF inválido").min(1, "CPF é obrigatório"),
 	cnpj: z.string().regex(regexCNPJ, "CNPJ inválido").optional(),
 	address: z.string().min(1, "Endereço é obrigatório"),
 	userId: z.string().uuid("ID do usuário inválido"),
 };
 const createTraderObject = z.object(createTraderSchema);
-export type TraderData = z.infer<typeof createTraderObject>;
+export type TraderDataDTO = z.infer<typeof createTraderObject>;
 
 // HOTELIER
 export const createHotelierSchema = {
 	hotelName: z.string().min(1, "Nome do hotel é obrigatório"),
-	totalQuantity: z
-		.number()
-		.int()
-		.min(1, "Quantidade total deve ser maior que zero"),
+	totalQuantity: z.number().int().min(1, "Quantidade total deve ser maior que zero"),
 	quantityOccupied: z.number().int().min(0, "Ocupados deve ser 0 ou mais"),
-	cnpj: z.string().regex(regexCNPJ, "CNPJ inválido"),
+	cnpj: z.string().regex(regexCNPJ, "CNPJ inválido").min(1, "CNPJ é obrigatório"),
 	link: z.string().url("Link inválido").optional(),
 	address: z.string().min(1, "Endereço é obrigatório"),
 	userId: z.string().uuid("ID do usuário inválido"),
 };
-
 const createHotelierObject = z.object(createHotelierSchema);
-export type HotelierData = z.infer<typeof createHotelierObject>;
+export type HotelierDataDTO = z.infer<typeof createHotelierObject>;
