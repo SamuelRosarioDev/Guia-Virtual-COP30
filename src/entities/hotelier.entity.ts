@@ -1,16 +1,7 @@
-type HotelierProps = {
-	id?: string;
-	hotelName: string;
-	totalQuantity: number;
-	quantityOccupied: number;
-	cnpj: string;
-	link?: string;
-	address: string;
-	userId: string;
-};
+import type { HotelierProps } from '../types/hotelierProps.type';
 
 export class HotelierEntity {
-	public id?: string;
+	public _id?: string;
 	public hotelName: string;
 	public totalQuantity: number;
 	public quantityOccupied: number;
@@ -19,16 +10,8 @@ export class HotelierEntity {
 	public address: string;
 	public userId: string;
 
-	constructor({
-		id,
-		hotelName,
-		totalQuantity,
-		cnpj,
-		link,
-		address,
-		userId,
-	}: HotelierProps) {
-		this.id = id;
+	constructor({ _id, hotelName, totalQuantity, cnpj, link, address, userId }: HotelierProps) {
+		this._id = _id;
 		this.hotelName = hotelName;
 		this.totalQuantity = totalQuantity;
 		this.quantityOccupied = 0;

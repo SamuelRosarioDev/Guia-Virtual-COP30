@@ -11,7 +11,7 @@ export const createUserSchema = {
 	typeUser: z.nativeEnum(UserType),
 };
 const createUserObject = z.object(createUserSchema);
-export type CreateUsersDTO = z.infer<typeof createUserObject>;
+export type UsersDataDTO = z.infer<typeof createUserObject>;
 
 export const idUserSchema = ({
   idUser: z.string().uuid("ID do usuário inválido")

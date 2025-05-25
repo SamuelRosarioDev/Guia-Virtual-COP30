@@ -12,4 +12,8 @@ export const createHotelierSchema = {
 	userId: z.string().uuid("ID do usuário inválido"),
 };
 const createHotelierObject = z.object(createHotelierSchema);
-export type HotelierDataDTO = z.infer<typeof createHotelierObject>;
+export type HoteliersDataDTO = z.infer<typeof createHotelierObject>;
+
+export const idHotelierSchema = { idHotelier: z.string().uuid("ID do hotelier inválido") };
+const idHotelierObject = z.object(idHotelierSchema);
+export type IdHotelierDTO = z.infer<typeof idHotelierObject>;

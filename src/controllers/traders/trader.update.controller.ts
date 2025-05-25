@@ -10,11 +10,11 @@ export const update = (tradersService: TradersService) =>
     async (req: ParamsRequest<IdTraderDTO>, res: BodyResponse<Trader | { message: string }>, next: NextFunction) => {
         try {
             const { idTrader } = req.params;
-            const userData: TraderEntity = req.body;
+            const traderData: TraderEntity = req.body;
 
             if (!idTrader) return res.status(StatusCodes.BAD_REQUEST).json({ message: "ID do comerciante é obrigatório." });
 
-            const updateTrader = await tradersService.updateTraderService(idTrader,userData );
+            const updateTrader = await tradersService.updateTraderService(idTrader, traderData);
             if (!updateTrader) return res.status(StatusCodes.NOT_FOUND).json({ message: "Comerciante não encontrado." });
 
             return res.status(StatusCodes.OK).json(updateTrader);

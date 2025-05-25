@@ -13,10 +13,8 @@ export const createTraderSchema = {
 	userId: z.string().uuid("ID do usuário inválido"),
 };
 const createTraderObject = z.object(createTraderSchema);
-export type CreateTraderDTO = z.infer<typeof createTraderObject>;
+export type TradersDataDTO = z.infer<typeof createTraderObject>;
 
-export const idTraderSchema = ({
-	idTrader: z.string().uuid("ID do trader inválido"),
-});
+export const idTraderSchema = { idTrader: z.string().uuid("ID do trader inválido") };
 const idTraderObject = z.object(idTraderSchema)
 export type IdTraderDTO = z.infer<typeof idTraderObject>;
