@@ -2,10 +2,10 @@ import type { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { z } from "zod";
 import { AppError } from "../errors/app.error";
-import type { ValidadeParams } from "../types/validadeparams.type";
+import type { ValidadeParams } from "../types/validadeParams.type";
 
 export function validador(params: ValidadeParams) {
-	return (req: Request, res: Response, next: NextFunction) => {
+	return (req: Request, _res: Response, next: NextFunction) => {
 		const result = z.object(params.schema).safeParse(req[params.type]);
 
 		if (!result.success) {

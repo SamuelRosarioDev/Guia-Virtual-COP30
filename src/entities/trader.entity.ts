@@ -1,32 +1,17 @@
-type TraderProps = {
-	id?: string;
-	storeName: string;
-	storeType: string;
-	cpf: string;
-	cnpj?: string;
-	address: string;
-	userId: string;
-};
+import type { StoreType } from "../enums/trader.enum";
+import type { TraderProps } from "../types/traderProps.type";
 
 export class TraderEntity {
-	public id?: string;
+	public _id?: string;
 	public storeName: string;
-	public storeType: string;
+	public storeType: StoreType;
 	public cpf: string;
 	public cnpj?: string;
 	public address: string;
 	public userId: string;
 
-	constructor({
-		id,
-		storeName,
-		storeType,
-		cpf,
-		cnpj,
-		address,
-		userId,
-	}: TraderProps) {
-		this.id = id;
+	constructor({ _id, storeName, storeType, cpf, cnpj, address, userId }: TraderProps) {
+		this._id = _id;
 		this.storeName = storeName;
 		this.storeType = storeType;
 		this.cpf = cpf;

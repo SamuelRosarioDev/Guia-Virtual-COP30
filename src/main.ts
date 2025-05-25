@@ -1,7 +1,7 @@
 import express from "express";
 import { routes } from "./routes";
 import { errorHandler } from "./middlewares/error-handler-middleware";
-import { Connection } from "./database";
+import { Connection } from "./database/connection.test";
 import dotenv from "dotenv";
 
 dotenv.config();

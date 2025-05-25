@@ -6,9 +6,9 @@ import { update } from "./users.update.controller";
 import { deleter } from "./users.delete.controller";
 
 export const UsersController = (usersService: UsersService) => ({
-  createUserController: create(usersService),
-  getUsersController: get(usersService),
-  getUserByIdController: getById(usersService),
-  updateUserController: update(usersService),
-  deleteUserController: deleter(usersService),
+    createUserController: create(usersService),
+    getUsersController: get(usersService),
+    getUserByIdController: getById(usersService),
+    updateUserController: update(usersService),
+    deleteUserController: deleter(usersService),
 });

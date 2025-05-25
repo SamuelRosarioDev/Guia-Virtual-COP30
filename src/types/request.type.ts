@@ -1,6 +1,6 @@
-import type { Request } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 export type BodyRequest<T> = Request<unknown, unknown, T>;
+export type BodyResponse<T> = Response<T>;
 export type QueryRequest<T> = Request<unknown, unknown, unknown, T>;
 export type ParamsRequest<T> = Request<T>;
-

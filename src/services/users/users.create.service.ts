@@ -3,9 +3,10 @@ import type { UsersRepository } from "../../database/repositories/users";
 import { AppError } from "../../errors/app.error";
 import { StatusCodes } from "http-status-codes";
 import { UserEntity } from "../../entities/users.entity";
+import type { User } from "@prisma/client";
 
-export const create = (usersRepository: UsersRepository) =>
-    async ({ name, email, password, phone, country, typeUser }: CreateUsersDTO) => {
+export const create = (usersRepository: UsersRepository)  =>
+    async ({ name, email, password, phone, country, typeUser }: CreateUsersDTO): Promise<User> => {
         const foundUser = await usersRepository.getUserByIdRepository(email);
         if (foundUser) throw new AppError("Usuário já existe", StatusCodes.BAD_REQUEST);
 
