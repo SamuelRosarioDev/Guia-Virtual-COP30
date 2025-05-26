@@ -6,5 +6,6 @@ export type HotelierProps = {
 	cnpj: string;
 	link?: string;
 	address: string;
+	cep: string;
 	userId: string;
 };

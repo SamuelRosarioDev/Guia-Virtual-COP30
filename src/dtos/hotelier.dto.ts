@@ -9,6 +9,7 @@ export const createHotelierSchema = {
 	cnpj: z.string().regex(regexCNPJ, "CNPJ inválido").min(1, "CNPJ é obrigatório"),
 	link: z.string().url("Link inválido").optional(),
 	address: z.string().min(1, "Endereço é obrigatório"),
+	cep: z.string().min(1, "CEP é obrigatório"),
 	userId: z.string().uuid("ID do usuário inválido"),
 };
 const createHotelierObject = z.object(createHotelierSchema);

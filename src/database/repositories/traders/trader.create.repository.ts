@@ -10,6 +10,7 @@ export const create = (model: PrismaClient["trader"]) =>
                 cpf: traderEntity.cpf,
                 cnpj: traderEntity.cnpj,
                 address: traderEntity.address,
+                cep: traderEntity.cep,
                 userId: traderEntity.userId,
             },
         });

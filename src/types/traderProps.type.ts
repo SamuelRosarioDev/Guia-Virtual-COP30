@@ -7,5 +7,6 @@ export type TraderProps = {
 	cpf: string;
 	cnpj?: string;
 	address: string;
+	cep: string;
 	userId: string;
 };

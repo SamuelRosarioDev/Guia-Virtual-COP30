@@ -8,9 +8,10 @@ export class HotelierEntity {
 	public cnpj: string;
 	public link?: string;
 	public address: string;
+	public cep: string;
 	public userId: string;
 
-	constructor({ _id, hotelName, totalQuantity, cnpj, link, address, userId }: HotelierProps) {
+	constructor({ _id, hotelName, totalQuantity, cnpj, link, address, cep, userId }: HotelierProps) {
 		this._id = _id;
 		this.hotelName = hotelName;
 		this.totalQuantity = totalQuantity;
@@ -18,6 +19,7 @@ export class HotelierEntity {
 		this.cnpj = cnpj;
 		this.link = link;
 		this.address = address;
+		this.cep = cep;
 		this.userId = userId;
 	}
 

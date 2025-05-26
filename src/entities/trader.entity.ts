@@ -8,15 +8,17 @@ export class TraderEntity {
 	public cpf: string;
 	public cnpj?: string;
 	public address: string;
+	public cep: string;
 	public userId: string;
 
-	constructor({ _id, storeName, storeType, cpf, cnpj, address, userId }: TraderProps) {
+	constructor({ _id, storeName, storeType, cpf, cnpj, address, cep, userId }: TraderProps) {
 		this._id = _id;
 		this.storeName = storeName;
 		this.storeType = storeType;
 		this.cpf = cpf;
 		this.cnpj = cnpj;
 		this.address = address;
+		this.cep = cep;
 		this.userId = userId;
 	}
 

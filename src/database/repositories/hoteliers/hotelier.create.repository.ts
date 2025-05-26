@@ -11,6 +11,7 @@ export const create = (model: PrismaClient["hotelier"]) =>
                 cnpj: hotelierEntity.cnpj,
                 link: hotelierEntity.link,
                 address: hotelierEntity.address,
+                cep: hotelierEntity.cep,
                 userId: hotelierEntity.userId,
             },
         });
