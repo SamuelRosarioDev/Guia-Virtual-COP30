@@ -11,6 +11,7 @@ export const create = (model: PrismaClient["user"]) =>
                 phone: userEntity.phone,
                 country: userEntity.country,
                 typeUser: userEntity.typeUser,
+                isAdmin: userEntity.isAdmin,
             },
         });
     };

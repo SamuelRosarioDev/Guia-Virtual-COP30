@@ -8,6 +8,7 @@ export const createUserSchema = {
 	password: z.string().min(6, "Password deve ter no mínimo 6 caracteres"),
 	phone: z.string(),
 	country: z.nativeEnum(CountryType),
+	isAdmin: z.boolean().default(false),
 	typeUser: z.nativeEnum(UserType),
 };
 const createUserObject = z.object(createUserSchema);

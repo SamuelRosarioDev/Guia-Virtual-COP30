@@ -11,6 +11,7 @@ export class UserEntity {
 	public phone: string;
 	public country: CountryType;
 	public typeUser: UserType;
+	public isAdmin?: boolean;
 
 	public hotelierData?: HotelierEntity;
 	public traderData?: TraderEntity;

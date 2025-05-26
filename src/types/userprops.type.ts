@@ -11,6 +11,7 @@ export type UserProps = {
     phone: string;
     country: CountryType;
     typeUser: UserType;
+    isAdmin?: boolean;
 
     hotelierData?: HotelierEntity;
     traderData?: TraderEntity;
