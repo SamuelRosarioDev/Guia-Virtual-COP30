@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction } from "express";
+import type { NextFunction, Request, Response } from "express";
 
 export type BodyRequest<T> = Request<unknown, unknown, T>;
 export type BodyResponse<T> = Response<T>;

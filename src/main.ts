@@ -1,9 +1,9 @@
-import express from "express";
 import cookieParser from "cookie-parser";
-import { routes } from "./routes";
-import { errorHandler } from "./middlewares/error-handler-middleware";
-import { Connection } from "./database/connection.test";
 import dotenv from "dotenv";
+import express from "express";
+import { Connection } from "./database/connection.test";
+import { errorHandler } from "./middlewares/error-handler-middleware";
+import { routes } from "./routes";
 
 dotenv.config();
 

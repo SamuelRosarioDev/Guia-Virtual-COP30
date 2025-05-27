@@ -1,13 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
-import { AppError } from "../errors/app.error";
 import { StatusCodes } from "http-status-codes";
+import { AppError } from "../errors/app.error";
 
-export function errorHandler(
-	error: AppError | Error, 
-	_: Request, 
-	res: Response, 
-	__: NextFunction
-) {
+export function errorHandler(error: AppError | Error, _: Request, res: Response, __: NextFunction) {
 	if (error instanceof AppError) {
 		res.status(error.statusCode).json({ message: error.message });
 	} else {

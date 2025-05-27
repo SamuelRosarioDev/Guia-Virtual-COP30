@@ -1,6 +1,5 @@
-import type { PrismaClient, Hotelier } from "@prisma/client";
+import type { Hotelier, PrismaClient } from "@prisma/client";
 
-export const get = (model: PrismaClient["hotelier"]) =>
-    async (): Promise<Hotelier[]> => {
-        return model.findMany();
-    };
+export const get = (model: PrismaClient["hotelier"]) => async (): Promise<Hotelier[]> => {
+	return model.findMany();
+};

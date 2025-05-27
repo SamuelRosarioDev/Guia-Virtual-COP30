@@ -4,15 +4,15 @@ import type { UserType } from "../enums/users.enum";
 import type { CountryType } from "../enums/users.enum";
 
 export type UserProps = {
-    _id?: string;
-    name: string;
-    email: string;
-    password: string;
-    phone: string;
-    country: CountryType;
-    typeUser: UserType;
-    isAdmin?: boolean;
+	_id?: string;
+	name: string;
+	email: string;
+	password: string;
+	phone: string;
+	country: CountryType;
+	typeUser: UserType;
+	isAdmin?: boolean;
 
-    hotelierData?: HotelierEntity;
-    traderData?: TraderEntity;
+	hotelierData?: HotelierEntity;
+	traderData?: TraderEntity;
 };

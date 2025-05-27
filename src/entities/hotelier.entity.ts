@@ -1,4 +1,4 @@
-import type { HotelierProps } from '../types/hotelierProps.type';
+import type { HotelierProps } from "../types/hotelierProps.type";
 
 export class HotelierEntity {
 	public _id?: string;

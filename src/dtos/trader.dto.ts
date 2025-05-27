@@ -17,5 +17,5 @@ const createTraderObject = z.object(createTraderSchema);
 export type TradersDataDTO = z.infer<typeof createTraderObject>;
 
 export const idTraderSchema = { idTrader: z.string().uuid("ID do trader inválido") };
-const idTraderObject = z.object(idTraderSchema)
+const idTraderObject = z.object(idTraderSchema);
 export type IdTraderDTO = z.infer<typeof idTraderObject>;

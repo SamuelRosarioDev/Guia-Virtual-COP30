@@ -7,11 +7,11 @@ import { getById } from "./hotelier.getById.service";
 import { update } from "./hotelier.update.service";
 
 export const HoteliersService = (usersRepository: UsersRepository, hotelierRepository: HotelierRepository) => ({
-    createHotelierService: create(usersRepository, hotelierRepository),
-    deleteHotelierService: deleter(hotelierRepository),
-    updateHotelierService: update(hotelierRepository),
-    getHotelierService: get(hotelierRepository),
-    getHotelierByIdService: getById(hotelierRepository),
+	createHotelierService: create(usersRepository, hotelierRepository),
+	deleteHotelierService: deleter(hotelierRepository),
+	updateHotelierService: update(hotelierRepository),
+	getHotelierService: get(hotelierRepository),
+	getHotelierByIdService: getById(hotelierRepository),
 });
 
 export type HoteliersService = ReturnType<typeof HoteliersService>;

@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { baseRoutes } from "./base.route";
-import { usersRoutes } from "./users.route";
-import { tradersRoutes } from "./trader.route";
 import { hoteliersRoutes } from "./hotelier.route";
+import { tradersRoutes } from "./trader.route";
+import { usersRoutes } from "./users.route";
 
 export const routes = Router();
 routes.use("/", baseRoutes);

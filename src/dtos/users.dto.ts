@@ -14,9 +14,9 @@ export const createUserSchema = {
 const createUserObject = z.object(createUserSchema);
 export type UsersDataDTO = z.infer<typeof createUserObject>;
 
-export const idUserSchema = ({
-  idUser: z.string().uuid("ID do usuário inválido")
-});
+export const idUserSchema = {
+	idUser: z.string().uuid("ID do usuário inválido"),
+};
 
 const idUserObject = z.object(idUserSchema);
 

@@ -9,9 +9,7 @@ export function validador(params: ValidadeParams) {
 		const result = z.object(params.schema).safeParse(req[params.type]);
 
 		if (!result.success) {
-			const errorFormatted = result.error.issues.map(
-				(item) => `${item.path.join(".")}: ${item.message}`,
-			);
+			const errorFormatted = result.error.issues.map((item) => `${item.path.join(".")}: ${item.message}`);
 			throw new AppError(errorFormatted, StatusCodes.UNPROCESSABLE_ENTITY);
 		}
 		req[params.type] = result.data;
