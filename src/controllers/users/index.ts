@@ -4,8 +4,10 @@ import { get } from "./users.get.controller";
 import { getById } from "./users.getById.controller";
 import { update } from "./users.update.controller";
 import { deleter } from "./users.delete.controller";
+import { loginUser } from "./users.login.controller";
 
 export const UsersController = (usersService: UsersService) => ({
+    loginController: loginUser(usersService),
     createUserController: create(usersService),
     getUsersController: get(usersService),
     getUserByIdController: getById(usersService),

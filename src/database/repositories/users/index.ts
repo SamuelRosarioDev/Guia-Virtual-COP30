@@ -4,9 +4,11 @@ import { getById } from "./users.getById.repository";
 import { get } from "./users.get.repository";
 import { update } from "./users.update.repository"; 
 import { deleter } from "./users.delete.repository";
+import { getUserByEmail } from "./users.login.repository";
 
 export const createUsersRepository = (model: PrismaClient["user"]) => {
   return {
+    getUserByEmailRepository: getUserByEmail(model),
     createUserRepository: create(model),
     getUserByIdRepository: getById(model),
     getUsersRepository: get(model),

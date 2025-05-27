@@ -9,6 +9,7 @@ export const usersRoutes = Router();
 const usersController = UsersController(UsersFactory.getServiceInstance());
 
 usersRoutes.get("/", usersController.getUsersController as RequestHandler);
+usersRoutes.post("/login", validador({ schema: createUserSchema, type: ParamsType.BODY }), usersController.loginController as unknown as RequestHandler);
 usersRoutes.post("/", validador({ schema: createUserSchema, type: ParamsType.BODY, }), usersController.createUserController as RequestHandler);
 usersRoutes.get("/:idUser", validador({ schema: idUserSchema, type: ParamsType.PARAMS, }), usersController.getUserByIdController as RequestHandler);
 usersRoutes.put("/:idUser", validador({ schema: idUserSchema, type: ParamsType.PARAMS, }), usersController.updateUserController as RequestHandler);
