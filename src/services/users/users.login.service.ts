@@ -3,15 +3,10 @@ import { StatusCodes } from "http-status-codes";
 import type { UsersRepository } from "../../database/repositories/users";
 import { AppError } from "../../errors/app.error";
 import { gerarToken } from "../../utils/jwt.util";
+import type { LoginProps } from "../../types/loginProps";
 
-type LoginParams = {
-	email: string;
-	password: string;
-};
-
-export const loginUser =
-	(usersRepository: UsersRepository) =>
-	async ({ email, password }: LoginParams) => {
+export const loginUser = (usersRepository: UsersRepository) =>
+	async ({ email, password }: LoginProps) => {
 		const user = await usersRepository.getUserByEmailRepository(email);
 		if (!user) {
 			throw new AppError("Usuário não encontrado", StatusCodes.NOT_FOUND);
@@ -22,10 +17,18 @@ export const loginUser =
 			throw new AppError("Credenciais inválidas", StatusCodes.UNAUTHORIZED);
 		}
 
+		const token = gerarToken({
+			idUser: user.idUser,
+			email: user.email,
+			name: user.name,
+			typeUser: user.typeUser,
+		});
+
 		return {
+			token,
 			_id: user.idUser,
 			name: user.name,
 			email: user.email,
-			token: gerarToken,
+			typeUser: user.typeUser,
 		};
 	};

@@ -9,6 +9,7 @@ type LoginResponse = {
 		_id: string;
 		name: string;
 		email: string;
+		typeUser: string;
 	};
 };
 
@@ -27,12 +28,8 @@ export const loginUser = (usersService: UsersService) => async (req: BodyRequest
 
 		return res.status(StatusCodes.OK).json({
 			message: "Login realizado com sucesso",
-			logged: {
-				_id: loggedUser._id,
-				name: loggedUser.name,
-				email: loggedUser.email,
-			},
 		});
+		
 	} catch (error) {
 		console.error("Erro no login:", error);
 		return res.status(StatusCodes.BAD_REQUEST).json({ message: "Falha no login" });

@@ -21,3 +21,8 @@ export const idUserSchema = {
 const idUserObject = z.object(idUserSchema);
 
 export type IdUserDTO = z.infer<typeof idUserObject>;
+
+export const loginSchema = ({
+  email: z.string().email(),
+  password: z.string().min(6 , "Password deve ter no mínimo 6 caracteres"),
+});

@@ -5,8 +5,7 @@ import type { TradersDataDTO } from "../../dtos/trader.dto";
 import { TraderEntity } from "../../entities/trader.entity";
 import { AppError } from "../../errors/app.error";
 
-export const create =
-	(usersRepository: UsersRepository, traderRepository: TraderRepository) =>
+export const create = (usersRepository: UsersRepository, traderRepository: TraderRepository) =>
 	async ({ address, cpf, storeName, storeType, userId, cnpj, cep }: TradersDataDTO) => {
 		//Verifica se o usuário existe
 		const foundUser = await usersRepository.getUserByIdRepository(userId);

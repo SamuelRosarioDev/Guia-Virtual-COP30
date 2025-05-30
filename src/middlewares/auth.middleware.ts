@@ -5,6 +5,7 @@ interface Payload {
 	idUser: string;
 	name: string;
 	email: string;
+	typeUser: string;
 	isAdmin?: boolean;
 }
 
