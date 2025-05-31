@@ -7,7 +7,8 @@ export const deleter =
 	(usersRepository: UsersRepository) =>
 	async (idUser: string): Promise<User> => {
 		const user = await usersRepository.getUserByIdRepository(idUser);
-		if (!user) throw new AppError("Usuário não encontrado", StatusCodes.NOT_FOUND);
+		// Verifica se o usuário existe
+		if (!user) throw new AppError("User not found", StatusCodes.NOT_FOUND);
 
 		const deletedUser = await usersRepository.deleteUserRepository(idUser);
 		return deletedUser;

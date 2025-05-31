@@ -7,7 +7,8 @@ export const deleter =
 	(hotelierRepository: HotelierRepository) =>
 	async (idHotelier: string): Promise<Hotelier> => {
 		const hotelier = await hotelierRepository.getHotelierByIdRepository(idHotelier);
-		if (!hotelier) throw new AppError("Hoteleiro não encontrado", StatusCodes.NOT_FOUND);
+		// Verifica se o hotelier existe
+		if (!hotelier) throw new AppError("Hotelier not found", StatusCodes.NOT_FOUND);
 
 		const deletedHotelier = await hotelierRepository.deleteHotelierRepository(idHotelier);
 		return deletedHotelier;

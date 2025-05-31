@@ -7,7 +7,8 @@ export const deleter =
 	(traderRepository: TraderRepository) =>
 	async (idTrader: string): Promise<Trader> => {
 		const trader = await traderRepository.getTraderByIdRepository(idTrader);
-		if (!trader) throw new AppError("Comerciante não encontrado", StatusCodes.NOT_FOUND);
+		// Verifica se o trader existe
+		if (!trader) throw new AppError("Trader not found", StatusCodes.NOT_FOUND);
 
 		const deletedTrader = await traderRepository.deleteTraderRepository(idTrader);
 		return deletedTrader;

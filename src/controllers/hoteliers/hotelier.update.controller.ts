@@ -6,17 +6,17 @@ import type { HotelierEntity } from "../../entities/hotelier.entity";
 import type { HoteliersService } from "../../services/hoteliers";
 import type { BodyResponse, ParamsRequest } from "../../types/request.type";
 
-export const update = (hoteliersService: HoteliersService) => async (req: ParamsRequest<IdHotelierDTO>, res: BodyResponse<Hotelier | { message: string }>, next: NextFunction) => {
+export const update = (hoteliersService: HoteliersService) => 
+	async (req: ParamsRequest<IdHotelierDTO>, res: BodyResponse<Hotelier>, next: NextFunction) => {
 	try {
 		const { idHotelier } = req.params;
 		const hotelierData: HotelierEntity = req.body;
 
-		if (!idHotelier) return res.status(StatusCodes.BAD_REQUEST).json({ message: "ID do hoteleiro é obrigatório." });
+		if (!idHotelier) return res.status(StatusCodes.BAD_REQUEST).json({ message: "Hotelier ID is required." });
 
 		const updateHotelier = await hoteliersService.updateHotelierService(idHotelier, hotelierData);
-		if (!updateHotelier) return res.status(StatusCodes.NOT_FOUND).json({ message: "Hoteleiro não encontrado." });
 
-		return res.status(StatusCodes.OK).json(updateHotelier);
+		return res.status(StatusCodes.OK).json({data: updateHotelier, message: "Hotelier updated successfully"});
 	} catch (error) {
 		next(error);
 	}

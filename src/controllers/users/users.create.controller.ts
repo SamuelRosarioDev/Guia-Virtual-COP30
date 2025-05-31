@@ -9,7 +9,7 @@ export const create = (usersService: UsersService) => async (req: BodyRequest<Us
 	try {
 		const userData = req.body;
 		const createdUser = await usersService.createUserService(userData);
-		return res.status(StatusCodes.CREATED).json(createdUser);
+		return res.status(StatusCodes.CREATED).json({ data: createdUser, message: "User created successfully" });
 	} catch (error) {
 		next(error);
 	}

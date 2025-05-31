@@ -11,12 +11,11 @@ export const update = (tradersService: TradersService) => async (req: ParamsRequ
 		const { idTrader } = req.params;
 		const traderData: TraderEntity = req.body;
 
-		if (!idTrader) return res.status(StatusCodes.BAD_REQUEST).json({ message: "ID do comerciante é obrigatório." });
+		if (!idTrader) return res.status(StatusCodes.BAD_REQUEST).json({ message: "Trader ID is required." });
 
 		const updateTrader = await tradersService.updateTraderService(idTrader, traderData);
-		if (!updateTrader) return res.status(StatusCodes.NOT_FOUND).json({ message: "Comerciante não encontrado." });
 
-		return res.status(StatusCodes.OK).json(updateTrader);
+		return res.status(StatusCodes.OK).json({ data: updateTrader, message: "Trader updated successfully" });
 	} catch (error) {
 		next(error);
 	}

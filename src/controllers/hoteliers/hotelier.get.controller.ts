@@ -4,10 +4,12 @@ import { StatusCodes } from "http-status-codes";
 import type { HoteliersService } from "../../services/hoteliers";
 import type { BodyRequest, BodyResponse } from "../../types/request.type";
 
-export const get = (hoteliersService: HoteliersService) => async (_req: BodyRequest<Hotelier>, res: BodyResponse<Hotelier[]>, next: NextFunction) => {
+export const get = (hoteliersService: HoteliersService) => 
+	async (_req: BodyRequest<Hotelier>, res: BodyResponse<Hotelier[]>, next: NextFunction) => {
 	try {
 		const hoteliers = await hoteliersService.getHotelierService();
-		return res.status(StatusCodes.OK).json(hoteliers);
+		// Check if any hoteliers were found
+		return res.status(StatusCodes.OK).json({ data: hoteliers, message: "Hoteliers retrieved successfully" });	
 	} catch (error) {
 		next(error);
 	}
