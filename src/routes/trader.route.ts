@@ -10,8 +10,8 @@ import { validador } from "../middlewares/validator.middleware";
 export const tradersRoutes = Router();
 const tradersController = TraderController(TradersFactory.getServiceInstance());
 
-tradersRoutes.get("/", authMiddleware, authorizeUserOrAdmin, tradersController.getTradersController as RequestHandler);
+tradersRoutes.get("/", /**authMiddleware, authorizeUserOrAdmin,**/ tradersController.getTradersController as RequestHandler);
 tradersRoutes.post("/", validador({ schema: createTraderSchema, type: ParamsType.BODY }), tradersController.createTraderController as RequestHandler);
-tradersRoutes.get("/:idTrader", authMiddleware, authorizeUserOrAdmin, validador({ schema: idTraderSchema, type: ParamsType.PARAMS }), tradersController.getTraderByIdController as RequestHandler);
+tradersRoutes.get("/:idTrader", /**authMiddleware, authorizeUserOrAdmin,**/ validador({ schema: idTraderSchema, type: ParamsType.PARAMS }), tradersController.getTraderByIdController as RequestHandler);
 tradersRoutes.put("/:idTrader", authMiddleware, authorizeUserOrAdmin, validador({ schema: idTraderSchema, type: ParamsType.PARAMS }), tradersController.updateTraderController as RequestHandler);
 tradersRoutes.delete("/:idTrader", authMiddleware, authorizeUserOrAdmin, validador({ schema: idTraderSchema, type: ParamsType.PARAMS }), tradersController.deleteTraderController as RequestHandler);

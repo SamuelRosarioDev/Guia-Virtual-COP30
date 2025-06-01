@@ -16,6 +16,8 @@ export const create = (usersRepository: UsersRepository, traderRepository: Trade
 		if (foundUser.typeUser !== "TRADER") throw new AppError("User does not have the trader type", StatusCodes.FORBIDDEN);
 
 		const foundTrader = await traderRepository.getUserOnTraderByIdRepository(userId);
+
+		// if (foundTrader?.cep.length !== 8) throw new AppError("CEP must be 8 digits", StatusCodes.BAD_REQUEST);
 		//Verifica se o TRADER já existe
 		if (foundTrader) throw new AppError("User already has a registered trader", StatusCodes.BAD_REQUEST);
 

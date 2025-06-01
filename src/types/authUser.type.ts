@@ -4,7 +4,7 @@ export interface AuthUser {
   email: string;
   phone: string;
   country: string;
-  typeUser: "Hotelier" | "Trader" | "Visitor";
+  typeUser: "HOTELIER" | "TRADER" | "VISITOR";
   isAdmin: boolean;
   hotelier?: {
     idHotelier: string;

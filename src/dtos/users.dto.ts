@@ -26,3 +26,15 @@ export const loginSchema = {
   email: z.string().email("Invalid email").min(1, "Email is required"),
   password: z.string().min(6, "Password must be at least 6 characters long"),
 };
+
+export const updateUserSchema = z.object({
+  name: z.string().min(1, "Name cannot be empty").optional(),
+  email: z.string().email("Invalid email").optional(),
+  password: z.string().min(6, "Password must be at least 6 characters long").optional(),
+  phone: z.string().min(1, "Phone cannot be empty").optional(),
+  country: z.nativeEnum(CountryType).optional(),
+  isAdmin: z.boolean().optional(),
+  typeUser: z.nativeEnum(UserType).optional(),
+});
+
+export type UpdateUserDTO = z.infer<typeof updateUserSchema>;

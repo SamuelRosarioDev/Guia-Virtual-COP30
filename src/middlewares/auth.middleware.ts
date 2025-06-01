@@ -38,7 +38,7 @@ export const authMiddleware: RequestHandler = async (req, res, next) => {
       email: user.email,
       phone: user.phone,
       country: user.country,
-      typeUser: user.typeUser as "Hotelier" | "Trader" | "Visitor",
+      typeUser: user.typeUser as "HOTELIER" | "TRADER" | "VISITOR",
       isAdmin: user.isAdmin,
       hotelier: user.hotelier
         ? {

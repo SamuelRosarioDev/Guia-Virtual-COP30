@@ -11,12 +11,9 @@ dotenv.config();
 export const create = (usersRepository: UsersRepository) =>
 	async ({ name, email, password, phone, country, typeUser, isAdmin }: UsersDataDTO): Promise<User> => {
 		try {
-			// Valida se a senha tem pelo menos 6 caracteres
-			if (password.length < 6) throw new AppError("Password must be at least 6 characters long", StatusCodes.BAD_REQUEST);
-
-			const foundUser = await usersRepository.getUserByEmailRepository(email);
+			const foundUser = await usersRepository.getUserByLoginRepository(email);
 			// Verifica se o usuário já existe
-			if (foundUser) throw new AppError("User already exists", StatusCodes.BAD_REQUEST);
+			if (foundUser?.email) throw new AppError("User already exists", StatusCodes.BAD_REQUEST);
 
 			// BCRYPT HASHING
 			const saltRounds = Number.parseInt(process.env.SALT_ROUNDS || "10", 10);

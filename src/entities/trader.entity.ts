@@ -3,26 +3,21 @@ import type { TraderProps } from "../types/traderProps.type";
 
 export class TraderEntity {
 	public _id?: string;
-	public storeName: string;
-	public storeType: StoreType;
-	public cpf: string;
+	public storeName?: string;
+	public storeType?: StoreType;
+	public cpf?: string;
 	public cnpj?: string;
-	public address: string;
-	public cep: string;
-	public userId: string;
+	public address?: string;
+	public cep?: string;
+	public userId?: string;
 
-	constructor({ _id, storeName, storeType, cpf, cnpj, address, cep, userId }: TraderProps) {
-		this._id = _id;
-		this.storeName = storeName;
-		this.storeType = storeType;
-		this.cpf = cpf;
-		this.cnpj = cnpj;
-		this.address = address;
-		this.cep = cep;
-		this.userId = userId;
-	}
+  constructor(props: Partial<TraderProps>) {
+	Object.assign(this, props);
+  }
 
-	getFormattedDocument(): string {
-		return this.cnpj ?? this.cpf;
-	}
+getFormattedDocument(): string {
+  if (this.cnpj) return this.cnpj;
+  if (this.cpf) return this.cpf;
+  throw new Error("No document found");
+}
 }

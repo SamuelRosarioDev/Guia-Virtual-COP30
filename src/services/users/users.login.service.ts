@@ -7,14 +7,16 @@ import type { LoginProps } from "../../types/loginProps";
 
 export const loginUser = (usersRepository: UsersRepository) =>
 	async ({ email, password }: LoginProps) => {
-		const user = await usersRepository.getUserByEmailRepository(email);
+		// Busca só pelo email
+		const user = await usersRepository.getUserByLoginRepository(email);
+		
 		// Verifica se o usuário existe
-		if (!user) throw new AppError("User not found", StatusCodes.NOT_FOUND);
+		if (!user) throw new AppError("Account does not exist", StatusCodes.NOT_FOUND);
 		
+		// Compara a senha informada com a criptografada
 		const isPasswordValid = await bcrypt.compare(password, user.password);
-		// Verifica se a senha está correta
-		if (!isPasswordValid) throw new AppError("Invalid credentials", StatusCodes.UNAUTHORIZED);
 		
+		if (!isPasswordValid) throw new AppError("Invalid credentials", StatusCodes.UNAUTHORIZED);
 
 		const token = gerarToken({
 			idUser: user.idUser,

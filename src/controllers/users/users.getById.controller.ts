@@ -13,7 +13,7 @@ export const getById = (usersService: UsersService) =>
 
 		const user = await usersService.getUserByIdService(idUser);
 
-		return res.status(StatusCodes.OK).json({ data: user, message: "Usuário recuperado com sucesso" });
+		return res.status(StatusCodes.OK).json({ data: user, message: "User retrieved successfully" });
 	} catch (error) {
 		next(error);
 	}
