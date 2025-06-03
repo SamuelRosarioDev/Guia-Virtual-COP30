@@ -10,6 +10,7 @@ export const createTraderSchema = {
 	cpf: z.string().regex(regexCPF, "CPF inválido").min(1, "CPF é obrigatório"),
 	cnpj: z.string().regex(regexCNPJ, "CNPJ inválido").optional(),
 	address: z.string().min(1, "Endereço é obrigatório"),
+	linkMap: z.string().min(1, "Link do mapa é obrigatório"),
 	cep: z.string().min(1, "CEP é obrigatório"),
 	userId: z.string().uuid("ID do usuário inválido"),
 };

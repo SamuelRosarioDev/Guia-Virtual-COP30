@@ -8,6 +8,7 @@ export class TraderEntity {
 	public cpf?: string;
 	public cnpj?: string;
 	public address?: string;
+	public linkMap?: string;
 	public cep?: string;
 	public userId?: string;
 

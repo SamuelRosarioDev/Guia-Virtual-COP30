@@ -1,10 +1,13 @@
+import { UserType } from "../enums/users.enum";
+
 export interface AuthUser {
   idUser: string;
   name: string;
   email: string;
+  password: string;
   phone: string;
   country: string;
-  typeUser: "HOTELIER" | "TRADER" | "VISITOR";
+  typeUser: UserType;
   isAdmin: boolean;
   hotelier?: {
     idHotelier: string;
@@ -12,8 +15,8 @@ export interface AuthUser {
     totalQuantity: number;
     quantityOccupied: number;
     cnpj: string;
-    link?: string;
     address: string;
+    linkMap: string;
     cep: string;
   };
   trader?: {
@@ -22,6 +25,7 @@ export interface AuthUser {
     storeType: string;
     cpf: string;
     cnpj?: string;
+    linkMap: string;
     address: string;
     cep: string;
   };

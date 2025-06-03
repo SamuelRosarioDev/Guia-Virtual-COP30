@@ -1,17 +1,18 @@
 version: "3.9"
 
 services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:latest
-    container_name: sqlserver-cop30
+  postgres:
+    image: postgres:latest
+    container_name: postgres-cop30
     ports:
-      - "1433:1433"
+      - "5432:5432"
     environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "123Cop30"
+      POSTGRES_USER: cop30
+      POSTGRES_PASSWORD: 123Cop30
+      POSTGRES_DB: cop30db
     volumes:
-      - sql_data:/var/opt/mssql
+      - pg_data:/var/lib/postgresql/data
     restart: unless-stopped
 
 volumes:
-  sql_data:
+  pg_data:

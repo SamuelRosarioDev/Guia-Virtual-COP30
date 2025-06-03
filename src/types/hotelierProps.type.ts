@@ -1,10 +1,10 @@
 export type HotelierProps = {
-	_id?: string;
+	idHotelier?: string;
 	hotelName: string;
 	totalQuantity: number;
 	quantityOccupied: number;
 	cnpj: string;
-	link?: string;
+	linkMap: string;
 	address: string;
 	cep: string;
 	userId: string;

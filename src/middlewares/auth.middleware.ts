@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import type { AuthUser } from "../types/authUser.type";
 import { PrismaClient } from "@prisma/client";
 import { verifyToken } from "../utils/jwt.util";
+import type { UserType } from "../enums/users.enum";
 
 const prisma = new PrismaClient();
 
@@ -36,32 +37,34 @@ export const authMiddleware: RequestHandler = async (req, res, next) => {
       idUser: user.idUser,
       name: user.name,
       email: user.email,
+      password: user.password,
       phone: user.phone,
       country: user.country,
-      typeUser: user.typeUser as "HOTELIER" | "TRADER" | "VISITOR",
+      typeUser: user.typeUser as UserType,
       isAdmin: user.isAdmin,
       hotelier: user.hotelier
         ? {
-            idHotelier: user.hotelier.idHotelier,
-            hotelName: user.hotelier.hotelName,
-            totalQuantity: user.hotelier.totalQuantity,
-            quantityOccupied: user.hotelier.quantityOccupied,
-            cnpj: user.hotelier.cnpj,
-            link: user.hotelier.link ?? undefined,
-            address: user.hotelier.address,
-            cep: user.hotelier.cep,
-          }
+          idHotelier: user.hotelier.idHotelier,
+          hotelName: user.hotelier.hotelName,
+          totalQuantity: user.hotelier.totalQuantity,
+          quantityOccupied: user.hotelier.quantityOccupied,
+          cnpj: user.hotelier.cnpj,
+          linkMap: user.hotelier.linkMap,
+          address: user.hotelier.address,
+          cep: user.hotelier.cep,
+        }
         : undefined,
       trader: user.trader
         ? {
-            idTrader: user.trader.idTrader,
-            storeName: user.trader.storeName,
-            storeType: user.trader.storeType,
-            cpf: user.trader.cpf,
-            cnpj: user.trader.cnpj ?? undefined,
-            address: user.trader.address,
-            cep: user.trader.cep,
-          }
+          idTrader: user.trader.idTrader,
+          storeName: user.trader.storeName,
+          storeType: user.trader.storeType,
+          cpf: user.trader.cpf,
+          cnpj: user.trader.cnpj ?? undefined,
+          linkMap: user.trader.linkMap,
+          address: user.trader.address,
+          cep: user.trader.cep,
+        }
         : undefined,
     };
 

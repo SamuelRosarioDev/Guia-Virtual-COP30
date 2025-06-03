@@ -11,6 +11,7 @@ export const update =
 				storeType: traderEntity.storeType,
 				cpf: traderEntity.cpf,
 				cnpj: traderEntity.cnpj,
+				linkMap: traderEntity.linkMap,
 				address: traderEntity.address,
 			},
 		});

@@ -7,8 +7,8 @@ export const createHotelierSchema = {
 	totalQuantity: z.number().int().min(1, "Quantidade total deve ser maior que zero"),
 	quantityOccupied: z.number().int().min(0, "Ocupados deve ser 0 ou mais"),
 	cnpj: z.string().regex(regexCNPJ, "CNPJ inválido").min(1, "CNPJ é obrigatório"),
-	link: z.string().url("Link inválido").optional(),
 	address: z.string().min(1, "Endereço é obrigatório"),
+	linkMap: z.string().min(1, "Link do mapa é obrigatório"),
 	cep: z.string().min(1, "CEP é obrigatório"),
 	userId: z.string().uuid("ID do usuário inválido"),
 };

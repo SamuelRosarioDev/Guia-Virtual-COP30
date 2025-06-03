@@ -4,7 +4,7 @@ import type { UserType } from "../enums/users.enum";
 import type { CountryType } from "../enums/users.enum";
 
 export type UserProps = {
-	_id?: string;
+	idUser?: string;
 	name: string;
 	email: string;
 	password: string;

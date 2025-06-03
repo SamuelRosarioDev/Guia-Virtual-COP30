@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export async function Connection() {
 	try {
 		await prisma.$connect();
-		console.log("✅ Conectado ao SQL Server com sucesso!");
+		console.log("✅ Conectado ao PostgresSQL com sucesso!");
 	} catch (error) {
 		throw new AppError(`❌ Error: ${error}`, StatusCodes.INTERNAL_SERVER_ERROR);
 	} finally {

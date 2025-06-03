@@ -10,7 +10,7 @@ export const update =
 				totalQuantity: hotelierEntity.totalQuantity,
 				quantityOccupied: hotelierEntity.quantityOccupied,
 				cnpj: hotelierEntity.cnpj,
-				link: hotelierEntity.link,
+				linkMap: hotelierEntity.linkMap,
 				address: hotelierEntity.address,
 			},
 		});
