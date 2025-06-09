@@ -4,7 +4,7 @@ import { StoreType } from "../enums/trader.enum";
 const regexCPF = /^(?:\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11})$/;
 const regexCNPJ = /^(?:\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}|\d{14})$/;
 
-export const createTraderSchema = {
+export const createTraderSchema = z.object({
 	storeName: z.string().min(1, "Nome da loja é obrigatório"),
 	storeType: z.nativeEnum(StoreType),
 	cpf: z.string().regex(regexCPF, "CPF inválido").min(1, "CPF é obrigatório"),
@@ -13,10 +13,8 @@ export const createTraderSchema = {
 	linkMap: z.string().min(1, "Link do mapa é obrigatório"),
 	cep: z.string().min(1, "CEP é obrigatório"),
 	userId: z.string().uuid("ID do usuário inválido"),
-};
-const createTraderObject = z.object(createTraderSchema);
-export type TradersDataDTO = z.infer<typeof createTraderObject>;
+});
+export type TradersDataDTO = z.infer<typeof createTraderSchema>;
 
-export const idTraderSchema = { idTrader: z.string().uuid("ID do trader inválido") };
-const idTraderObject = z.object(idTraderSchema);
-export type IdTraderDTO = z.infer<typeof idTraderObject>;
+export const idTraderSchema = z.object({ idTrader: z.string().uuid("ID do trader inválido") });
+export type IdTraderDTO = z.infer<typeof idTraderSchema>;

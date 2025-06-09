@@ -4,7 +4,7 @@ import type { HotelierEntity } from "./hotelier.entity";
 import type { TraderEntity } from "./trader.entity";
 
 export class UserEntity {
-  public _id?: string;
+  public idUser?: string;
   public name?: string;
   public email?: string;
   public password?: string;
@@ -12,6 +12,8 @@ export class UserEntity {
   public country?: CountryType;
   public typeUser?: UserType;
   public isAdmin?: boolean;
+  public createdAt?: Date;
+  public updatedAt?: Date;
 
   public hotelierData?: HotelierEntity;
   public traderData?: TraderEntity;

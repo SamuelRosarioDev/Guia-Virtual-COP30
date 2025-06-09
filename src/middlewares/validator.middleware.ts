@@ -6,7 +6,7 @@ import type { ValidadeParams } from "../types/validadeParams.type";
 
 export function validador(params: ValidadeParams) {
 	return (req: Request, _res: Response, next: NextFunction) => {
-		const result = z.object(params.schema).safeParse(req[params.type]);
+		const result = params.schema.safeParse(req[params.type]);
 
 		if (!result.success) {
 			const errorFormatted = result.error.issues.map((item) => `${item.path.join(".")}: ${item.message}`);

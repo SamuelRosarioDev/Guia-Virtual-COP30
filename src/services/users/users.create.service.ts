@@ -1,18 +1,16 @@
-import type { User } from "@prisma/client";
 import bcrypt from "bcryptjs";
-import dotenv from "dotenv";
 import { StatusCodes } from "http-status-codes";
 import type { UsersRepository } from "../../database/repositories/users";
 import type { UsersDataDTO } from "../../dtos/users.dto";
 import { UserEntity } from "../../entities/users.entity";
 import { AppError } from "../../errors/app.error";
-dotenv.config();
+import { v4 as uuidv4 } from "uuid";
 
 export const create = (usersRepository: UsersRepository) =>
-	async ({ name, email, password, phone, country, typeUser, isAdmin }: UsersDataDTO): Promise<User> => {
+	async ({ name, email, password, phone, country, typeUser, isAdmin, createdAt, updatedAt  }: UsersDataDTO): Promise<UserEntity> => {
 		try {
 			const foundUser = await usersRepository.getUserByLoginRepository(email);
-			// Verifica se o usuário já existe
+			// // Verifica se o usuário já existe
 			if (foundUser?.email) throw new AppError("User already exists", StatusCodes.BAD_REQUEST);
 
 			// BCRYPT HASHING
@@ -20,6 +18,7 @@ export const create = (usersRepository: UsersRepository) =>
 			const hashedPassword = await bcrypt.hash(password, saltRounds);
 
 			const userEntity = new UserEntity({
+				idUser: uuidv4(),
 				name,
 				email,
 				password: hashedPassword,
@@ -27,13 +26,14 @@ export const create = (usersRepository: UsersRepository) =>
 				country,
 				typeUser,
 				isAdmin,
+				createdAt,
+				updatedAt
 			});
 
 			const createdUser = await usersRepository.createUserRepository(userEntity);
 			return createdUser;
 		} catch (error) {
-			// Se ocorrer um erro, lança uma AppError com a mensagem e o status apropriados
-			throw new AppError("Error creating user", StatusCodes.INTERNAL_SERVER_ERROR);
+			throw error;
 		}
 
 

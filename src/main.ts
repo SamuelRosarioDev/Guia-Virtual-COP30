@@ -1,12 +1,11 @@
+import "./config/env";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv";
 import express from "express";
-import { Connection } from "./database/connection.test";
+import { Connection } from "./database/connection";
 import { errorHandler } from "./middlewares/error-handler-middleware";
 import { routes } from "./routes";
 import cors from "cors"
 
-dotenv.config();
 
 const app = express();
 

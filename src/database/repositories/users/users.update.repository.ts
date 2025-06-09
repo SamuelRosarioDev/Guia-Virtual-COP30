@@ -1,20 +1,53 @@
-import type { PrismaClient, User } from "@prisma/client";
-import type { UserEntity } from "../../../entities/users.entity";
+import { pool } from "../../connection";
+import { UserEntity } from "../../../entities/users.entity";
+import { sql } from "../../../config/sqlTag";
 
 export const update =
-    (model: PrismaClient["user"]) =>
-    async (idUser: string, userEntity: UserEntity): Promise<User> => {
-        const updateData: Partial<User> = {};
+    () =>
+        async (idUser: string, userEntity: UserEntity): Promise<UserEntity | null> => {
+            //[SQL]
+            const query = sql`
+                UPDATE users SET
+                    name = COALESCE($2, name),
+                    email = COALESCE($3, email),
+                    password = COALESCE($4, password),
+                    phone = COALESCE($5, phone),
+                    country = COALESCE($6, country),
+                    type_user = COALESCE($7, type_user),
+                    is_admin = COALESCE($8, is_admin),
+                    "updatedAt" = NOW()
+                WHERE id_user = $1
+                RETURNING id_user, name, email, password, phone, country, type_user, is_admin, "createdAt", "updatedAt";
+            `;
+            //[SQL]
 
-        if (userEntity.name) updateData.name = userEntity.name;
-        if (userEntity.email) updateData.email = userEntity.email;
-        if (userEntity.password) updateData.password = userEntity.password;
-        if (userEntity.phone) updateData.phone = userEntity.phone;
-        if (userEntity.country) updateData.country = userEntity.country;
-        if (userEntity.typeUser) updateData.typeUser = userEntity.typeUser;
+            const values = [
+                idUser,
+                userEntity.name ?? null,
+                userEntity.email ?? null,
+                userEntity.password ?? null,
+                userEntity.phone ?? null,
+                userEntity.country ?? null,
+                userEntity.typeUser ?? null,
+                userEntity.isAdmin ?? null,
+            ];
 
-        return model.update({
-            where: { idUser },
-            data: updateData,
-        });
-    };
+            const result = await pool.query(query, values);
+
+            if (result.rowCount === 0) return null;
+
+            const row = result.rows[0];
+
+            return new UserEntity({
+                idUser: row.id_user,
+                name: row.name,
+                email: row.email,
+                password: row.password,
+                phone: row.phone,
+                country: row.country,
+                typeUser: row.type_user,
+                isAdmin: row.is_admin,
+                createdAt: row.createdAt,
+                updatedAt: row.updatedAt,
+            });
+        };

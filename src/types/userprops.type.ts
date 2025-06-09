@@ -12,6 +12,8 @@ export type UserProps = {
 	country: CountryType;
 	typeUser: UserType;
 	isAdmin?: boolean;
+	createdAt?: Date;
+	updatedAt?: Date;
 
 	hotelierData?: HotelierEntity;
 	traderData?: TraderEntity;
