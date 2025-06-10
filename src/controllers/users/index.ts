@@ -1,6 +1,6 @@
 import type { UsersService } from "../../services/users";
 import { create } from "./users.create.controller";
-import { deleter } from "./users.delete.controller";
+import { remove } from "./users.delete.controller";
 import { get } from "./users.get.controller";
 import { getById } from "./users.getById.controller";
 import { loginUser } from "./users.login.controller";
@@ -12,5 +12,5 @@ export const UsersController = (usersService: UsersService) => ({
 	getUsersController: get(usersService),
 	getUserByIdController: getById(usersService),
 	updateUserController: update(usersService),
-	deleteUserController: deleter(usersService),
+	deleteUserController: remove(usersService),
 });
