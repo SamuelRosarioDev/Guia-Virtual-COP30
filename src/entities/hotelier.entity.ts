@@ -8,9 +8,11 @@ export class HotelierEntity {
 	public cnpj?: string;
 	public link?: string;
 	public address?: string;
-	public linkMap?: string; 
+	public linkMap?: string;
 	public cep?: string;
 	public userId?: string;
+	public createdAt?: Date;
+	public updatedAt?: Date;
 
 	constructor(props: Partial<HotelierProps>) {
 		Object.assign(this, props);

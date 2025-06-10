@@ -1,4 +1,3 @@
-import type { PrismaClient } from "@prisma/client";
 import { create } from "./trader.create.repository";
 import { remove } from "./trader.delete.repository";
 import { get } from "./trader.get.repository";

@@ -1,4 +1,3 @@
-import type { User } from "@prisma/client";
 import type { NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import type { IdUserDTO } from "../../dtos/users.dto";
