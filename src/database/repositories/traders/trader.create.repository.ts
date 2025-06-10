@@ -7,9 +7,9 @@ export const create = () =>
     async ({ storeName, storeType, cpf, cnpj, linkMap, address, cep, userId, }: TraderEntity): Promise<TraderEntity> => {
 
         const query = sql`
-            INSERT INTO trader (store_name, store_type, cpf, cnpj, link_map, address, cep, user_id)
+            INSERT INTO traders (store_name, store_type, cpf, cnpj, link_map, address, cep, userId)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-            RETURNING store_name, store_type, cpf, cnpj, link_map, address, cep, user_id;
+            RETURNING store_name, store_type, cpf, cnpj, link_map, address, cep, userId;
         `;
 
         const values = [storeName, storeType, cpf, cnpj, linkMap, address, cep, userId,];

@@ -6,7 +6,7 @@ export const update = () =>
 	async (idTrader: string, traderEntity: TraderEntity): Promise<TraderEntity | null> => {
 		//[SQL]
 		const query = sql`
-                UPDATE users SET
+                UPDATE traders SET
                     store_name = COALESCE($2, store_name),
                     store_type = COALESCE($3, store_type),
                     cpf = COALESCE($4, cpf),

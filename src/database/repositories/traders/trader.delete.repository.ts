@@ -5,7 +5,7 @@ import { pool } from "../../connection";
 export const remove = () =>
 	async (idTrader: string): Promise<TraderEntity | null> => {
 		const query = sql`
-			DELETE FROM users
+			DELETE FROM traders
 			WHERE id_trader = $1
 			RETURNING id_trader, store_name, store_type, cpf, cnpj, link_map, address, cep, "createdAt", "updatedAt"
 		`
@@ -24,7 +24,5 @@ export const remove = () =>
 			linkMap: row.link_map,
 			cep: row.cep,
 			userId: row.userId,
-			createdAt: row.createdAt,
-			updatedAt: row.updatedAt,
 		})
 	};
