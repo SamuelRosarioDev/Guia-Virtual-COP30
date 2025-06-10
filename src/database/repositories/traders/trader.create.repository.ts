@@ -1,30 +1,30 @@
-import type { PrismaClient, Trader } from "@prisma/client";
-import type { TraderEntity } from "../../../entities/trader.entity";
+import { pool } from "../../connection";
+import { TraderEntity } from "../../../entities/trader.entity";
+import type { QueryResult } from "pg";
+import { sql } from "../../../config/sqlTag";
 
-export const create = (model: PrismaClient["trader"]) =>
-  async (traderEntity: TraderEntity): Promise<Trader> => {
-    if (
-      !traderEntity.storeName ||
-      !traderEntity.storeType ||
-      !traderEntity.cpf || 
-      !traderEntity.linkMap || 
-      !traderEntity.address || 
-      !traderEntity.cep || 
-      !traderEntity.userId 
-    ) { 
-      throw new Error("Missing required trader fields");
-    }
+export const create = () =>
+    async ({ storeName, storeType, cpf, cnpj, linkMap, address, cep, userId, }: TraderEntity): Promise<TraderEntity> => {
 
-    return model.create({
-      data: {
-        storeName: traderEntity.storeName,
-        storeType: traderEntity.storeType,
-        cpf: traderEntity.cpf,
-        cnpj: traderEntity.cnpj || undefined,
-        linkMap: traderEntity.linkMap,
-        address: traderEntity.address,
-        cep: traderEntity.cep,
-        userId: traderEntity.userId,
-      },
-    });
-  };
+        const query = sql`
+            INSERT INTO trader (store_name, store_type, cpf, cnpj, link_map, address, cep, user_id)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            RETURNING store_name, store_type, cpf, cnpj, link_map, address, cep, user_id;
+        `;
+
+        const values = [storeName, storeType, cpf, cnpj, linkMap, address, cep, userId,];
+
+        const result: QueryResult = await pool.query(query, values);
+        const insertedRow = result.rows[0];
+
+        return new TraderEntity({
+            storeName: insertedRow.store_name,
+            storeType: insertedRow.store_type,
+            cpf: insertedRow.cpf,
+            cnpj: insertedRow.cnpj,
+            linkMap: insertedRow.link_map,
+            address: insertedRow.address,
+            cep: insertedRow.cep,
+            userId: insertedRow.user_id,
+        });
+    };

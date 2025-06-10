@@ -2,8 +2,7 @@ import { pool } from "../../connection";
 import { UserEntity } from "../../../entities/users.entity";
 import { sql } from "../../../config/sqlTag";
 
-export const update =
-    () =>
+export const update = () =>
         async (idUser: string, userEntity: UserEntity): Promise<UserEntity | null> => {
             //[SQL]
             const query = sql`

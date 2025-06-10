@@ -6,44 +6,40 @@ import bcrypt from "bcryptjs";
 import { updateUserSchema, type UpdateUserDTO } from "../../dtos/users.dto";
 
 export const update = (usersRepository: UsersRepository) =>
-  async (idUser: string, data: UpdateUserDTO): Promise<UserEntity> => {
-    try {
-      // Valida os dados com Zod
-      const parsedData = updateUserSchema.parse(data);
+    async (idUser: string, data: UpdateUserDTO): Promise<UserEntity> => {
+        try {
+            const parsedData = updateUserSchema.parse(data);
 
-      // Busca usuário original no banco
-      const originalUser = await usersRepository.getUserByIdRepository(idUser);
+            const originalUser = await usersRepository.getUserByIdRepository(idUser);
 
-      if (!originalUser) {
-        throw new AppError("User not found", StatusCodes.NOT_FOUND);
-      }
+            if (!originalUser) {
+                throw new AppError("User not found", StatusCodes.NOT_FOUND);
+            }
 
-      // Se tiver senha, hash para salvar
-      if (parsedData.password && parsedData.password.trim() !== "") {
-        const saltRounds = Number.parseInt(process.env.SALT_ROUNDS || "10", 10);
-        parsedData.password = await bcrypt.hash(parsedData.password, saltRounds);
-      } else {
-        delete parsedData.password;
-      }
+            if (parsedData.password && parsedData.password.trim() !== "") {
+                const saltRounds = Number.parseInt(process.env.SALT_ROUNDS || "10", 10);
+                parsedData.password = await bcrypt.hash(parsedData.password, saltRounds);
+            } else {
+                delete parsedData.password;
+            }
 
-      // Mescla dados existentes com os novos
-      const updatedUserData = {
-        ...originalUser,
-        ...parsedData,
-      };
+            const updatedUserData = {
+                ...originalUser,
+                ...parsedData,
+            };
 
-      // Cria entidade com os dados completos
-      const userEntity = new UserEntity(updatedUserData);
+            // Cria entidade com os dados completos
+            const userEntity = new UserEntity(updatedUserData);
 
-      // Chama o repositório para atualizar no banco
-      const updatedUser = await usersRepository.updateUserRepository(idUser, userEntity);
+            // Chama o repositório para atualizar no banco
+            const updatedUser = await usersRepository.updateUserRepository(idUser, userEntity);
 
-      if (!updatedUser) {
-        throw new AppError("User not found or update failed", StatusCodes.NOT_FOUND);
-      }
+            if (!updatedUser) {
+                throw new AppError("User not found or update failed", StatusCodes.NOT_FOUND);
+            }
 
-      return updatedUser;
-    } catch (error) {
-      throw error
-    }
-  };
+            return updatedUser;
+        } catch (error) {
+            throw error
+        }
+    };

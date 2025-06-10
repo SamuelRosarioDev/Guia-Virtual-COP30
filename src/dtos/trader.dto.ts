@@ -13,8 +13,24 @@ export const createTraderSchema = z.object({
 	linkMap: z.string().min(1, "Link do mapa é obrigatório"),
 	cep: z.string().min(1, "CEP é obrigatório"),
 	userId: z.string().uuid("ID do usuário inválido"),
+	createdAt: z.date().default(() => new Date()),
+	updatedAt: z.date().default(() => new Date()),
 });
 export type TradersDataDTO = z.infer<typeof createTraderSchema>;
 
 export const idTraderSchema = z.object({ idTrader: z.string().uuid("ID do trader inválido") });
 export type IdTraderDTO = z.infer<typeof idTraderSchema>;
+
+export const updateTraderSchema = z.object({
+	storeName: z.string().min(1, "Nome da loja é obrigatório"),
+	storeType: z.nativeEnum(StoreType),
+	cpf: z.string().regex(regexCPF, "CPF inválido").min(1, "CPF é obrigatório"),
+	cnpj: z.string().regex(regexCNPJ, "CNPJ inválido").optional(),
+	address: z.string().min(1, "Endereço é obrigatório"),
+	linkMap: z.string().min(1, "Link do mapa é obrigatório"),
+	cep: z.string().min(1, "CEP é obrigatório"),
+	userId: z.string().uuid("ID do usuário inválido"),
+	updatedAt: z.date().default(() => new Date()),
+});
+
+export type UpdateTraderDTO = z.infer<typeof updateTraderSchema>

@@ -7,9 +7,7 @@ export const getById = (usersRepository: UsersRepository) =>
   async (idUser: string): Promise<UserEntity> => {
     const user = await usersRepository.getUserByIdRepository(idUser);
 
-    if (!user) {
-      throw new AppError("User not found", StatusCodes.NOT_FOUND);
-    }
+    if (!user) throw new AppError("User not found", StatusCodes.NOT_FOUND);
 
     return user;
   };
