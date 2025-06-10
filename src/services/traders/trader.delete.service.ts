@@ -3,7 +3,7 @@ import type { TraderRepository } from "../../database/repositories/traders";
 import { AppError } from "../../errors/app.error";
 import type { TraderEntity } from "../../entities/trader.entity";
 
-export const deleter =
+export const remove =
 	(traderRepository: TraderRepository) =>
 	async (idTrader: string): Promise<TraderEntity> => {
 		const trader = await traderRepository.getTraderByIdRepository(idTrader);

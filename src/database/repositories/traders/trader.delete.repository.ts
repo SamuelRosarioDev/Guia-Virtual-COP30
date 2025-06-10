@@ -2,7 +2,7 @@ import { sql } from "../../../config/sqlTag";
 import { TraderEntity } from "../../../entities/trader.entity";
 import { pool } from "../../connection";
 
-export const deleter = () =>
+export const remove = () =>
 	async (idTrader: string): Promise<TraderEntity | null> => {
 		const query = sql`
 			DELETE FROM users
