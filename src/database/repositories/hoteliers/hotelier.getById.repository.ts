@@ -31,7 +31,7 @@ export const getById = () =>
 
 export const getUserOnHotelierById = () =>
 	async (userId: string): Promise<HotelierEntity | null> => {
-		const query = sql`SELECT * FROM traders WHERE user_id = $1`;
+		const query = sql`SELECT * FROM hoteliers WHERE "userId" = $1`;
 		const values = [userId];
 
 		const result = await pool.query(query, values);

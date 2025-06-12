@@ -31,7 +31,7 @@ export const getById = () =>
 
 export const getUserOnTraderById = () =>
   async (userId: string): Promise<TraderEntity | null> => {
-    const query = sql`SELECT * FROM traders WHERE user_id = $1`;
+    const query = sql`SELECT * FROM traders WHERE userId = $1`;
     const values = [userId];
 
     const result = await pool.query(query, values);
@@ -48,7 +48,7 @@ export const getUserOnTraderById = () =>
       address: row.address,
       linkMap: row.link_map,
       cep: row.cep,
-      userId: row.user_id,
+      userId: row.userId,
       createdAt: row.created_at,
       updatedAt: row.updated_at,
     });

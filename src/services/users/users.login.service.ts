@@ -27,7 +27,7 @@ export const loginUser = (usersRepository: UsersRepository) =>
     // Retorno seguro
     return {
       token,
-      _id: user.idUser,
+      idUser: user.idUser,
       name: user.name,
       email: user.email,
       typeUser: user.typeUser,

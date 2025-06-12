@@ -7,6 +7,8 @@ export const authRoute = Router();
 authRoute.get("/me", authMiddleware, (req, res) => {
     if (!req.user) {
         res.status(StatusCodes.UNAUTHORIZED).json({ message: "Usuário não autenticado" });
+        return; 
     }
+
     res.status(StatusCodes.OK).json(req.user);
 });
