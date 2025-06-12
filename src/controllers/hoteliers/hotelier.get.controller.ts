@@ -8,7 +8,6 @@ export const get = (hoteliersService: HoteliersService) =>
 	async (_req: BodyRequest<HotelierEntity>, res: BodyResponse<HotelierEntity[]>, next: NextFunction) => {
 	try {
 		const hoteliers = await hoteliersService.getHotelierService();
-		// Check if any hoteliers were found
 		return res.status(StatusCodes.OK).json({ data: hoteliers, message: "Hoteliers retrieved successfully" });	
 	} catch (error) {
 		next(error);

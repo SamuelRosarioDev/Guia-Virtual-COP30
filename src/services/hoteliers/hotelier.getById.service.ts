@@ -7,7 +7,6 @@ export const getById =
 	(hotelierRepository: HotelierRepository) =>
 	async (idHotelier: string): Promise<HotelierEntity> => {
 		const hotelier = await hotelierRepository.getHotelierByIdRepository(idHotelier);
-		// Verifica se o hotelier existe
 		if (!hotelier) throw new AppError("Hotelier not found", StatusCodes.NOT_FOUND);
 		return hotelier;
 	};

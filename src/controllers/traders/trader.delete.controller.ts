@@ -1,4 +1,3 @@
-import type { Trader } from "@prisma/client";
 import type { NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import type { IdTraderDTO } from "../../dtos/trader.dto";

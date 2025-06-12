@@ -10,7 +10,6 @@ export const update = (traderRepository: TraderRepository) =>
             const parsedData = updateTraderSchema.parse(data);
 
             const originalTrader = await traderRepository.getTraderByIdRepository(idTrader);
-
             if (!originalTrader) throw new AppError("Trader not found", StatusCodes.NOT_FOUND);
 
             const updatedTraderData = {
@@ -20,10 +19,10 @@ export const update = (traderRepository: TraderRepository) =>
 
             const traderEntity = new TraderEntity(updatedTraderData);
 
-            const updatedTrader = await traderRepository.updateTraderRepository(idTrader, traderEntity);
+            if (!traderEntity) throw new AppError("Trader not found or update failed", StatusCodes.NOT_FOUND);
 
-            if (!updatedTrader) throw new AppError("Trader not found or update failed", StatusCodes.NOT_FOUND);
-        
+            const updatedTrader = await traderRepository.updateTraderRepository(idTrader, traderEntity);
+			if (!updatedTrader) throw new AppError("Trader not found or update failed", StatusCodes.NOT_FOUND);
             return updatedTrader;
         } catch (error) {
             throw error;

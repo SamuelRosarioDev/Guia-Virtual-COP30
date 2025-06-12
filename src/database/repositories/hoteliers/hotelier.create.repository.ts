@@ -26,7 +26,6 @@ export const create = () =>
 			cnpj, linkMap, address, cep, userId, createdAt, updatedAt
 		];
 
-
 		const result: QueryResult = await pool.query(query, values);
 		const insertedRow = result.rows[0];
 

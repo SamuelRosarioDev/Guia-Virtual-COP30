@@ -31,7 +31,7 @@ export const getById = () =>
 
 export const getUserOnTraderById = () =>
   async (userId: string): Promise<TraderEntity | null> => {
-    const query = sql`SELECT * FROM traders WHERE userId = $1`;
+    const query = sql`SELECT * FROM traders WHERE "userId" = $1`;
     const values = [userId];
 
     const result = await pool.query(query, values);

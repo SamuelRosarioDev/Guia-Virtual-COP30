@@ -10,7 +10,6 @@ export const create = (hoteliersService: HoteliersService) =>
 	try {
 		const hotelierData = req.body;
 		const createdHotelier = await hoteliersService.createHotelierService(hotelierData);
-		// Retorna o hotelier criado e uma mensagem de sucesso
 		return res.status(StatusCodes.CREATED).json({data: createdHotelier, message: "Hotelier created successfully"});
 	} catch (error) {
 		next(error);

@@ -29,7 +29,6 @@ export const update = () =>
 			traderEntity.address ?? null,
 			traderEntity.linkMap ?? null,
 			traderEntity.cep ?? null,
-			traderEntity.updatedAt ?? null,
 		];
 
 		const result = await pool.query(query, values);

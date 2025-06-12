@@ -15,7 +15,6 @@ export const remove = () =>
 		const row = result.rows[0]
 
 		return new TraderEntity({
-			idTrader: row.id_trader,
 			storeName: row.store_name,
 			storeType: row.store_type,
 			cpf: row.cpf,

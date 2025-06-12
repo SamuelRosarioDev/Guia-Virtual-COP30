@@ -3,11 +3,11 @@ import { HotelierEntity } from "../../../entities/hotelier.entity";
 import { pool } from "../../connection";
 
 export const getById = () =>
-	async (idTrader: string): Promise<HotelierEntity | null> => {
+	async (idHotelier: string): Promise<HotelierEntity | null> => {
 		//[SQL]
 		const query = sql`SELECT * FROM hoteliers WHERE id_hotelier = $1;`;
 		//[SQL]
-		const values = [idTrader];
+		const values = [idHotelier];
 		const result = await pool.query(query, values);
 
 		if (result.rowCount === 0) return null;
